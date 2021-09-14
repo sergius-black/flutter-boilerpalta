@@ -1,5 +1,6 @@
 part of 'settings_cubit.dart';
 
+// Freezed Union types for BLoC states because reasons
 @freezed
 class SettingsState with _$SettingsState {
   const factory SettingsState.initial() = SettingsInitial;

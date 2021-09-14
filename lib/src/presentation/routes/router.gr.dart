@@ -7,10 +7,10 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/sample_feature/sample_item_details_view.dart' as _i5;
-import '../pages/sample_feature/sample_item_list_view.dart' as _i4;
-import '../pages/settings/settings_view.dart' as _i6;
-import '../pages/splash/splash.dart' as _i3;
+import '../pages/sample_feature/sample_item_details_page.dart' as _i5;
+import '../pages/sample_feature/sample_item_list_page.dart' as _i4;
+import '../pages/settings/settings_page.dart' as _i6;
+import '../pages/splash/splash_screen.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -18,60 +18,57 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SplashScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
           return const _i3.SplashScreen();
         }),
-    SampleItemListViewRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SampleItemListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.SampleItemListView();
+          return const _i4.SampleItemListPage();
         }),
-    SampleItemDetailsViewRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SampleItemDetailsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.SampleItemDetailsView();
+          return const _i5.SampleItemDetailsPage();
         }),
-    SettingsViewRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    SettingsRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.SettingsView();
+          return const _i6.SettingsPage();
         })
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(SplashScreenRoute.name, path: '/'),
-        _i1.RouteConfig(SampleItemListViewRoute.name,
-            path: '/sample-item-list-view'),
-        _i1.RouteConfig(SampleItemDetailsViewRoute.name,
-            path: '/sample-item-details-view'),
-        _i1.RouteConfig(SettingsViewRoute.name, path: '/settings-view')
+        _i1.RouteConfig(SplashScreen.name, path: '/splash'),
+        _i1.RouteConfig(SampleItemListRoute.name, path: '/'),
+        _i1.RouteConfig(SampleItemDetailsRoute.name, path: '/sample_item'),
+        _i1.RouteConfig(SettingsRoute.name, path: '/settings')
       ];
 }
 
-class SplashScreenRoute extends _i1.PageRouteInfo<void> {
-  const SplashScreenRoute() : super(name, path: '/');
+class SplashScreen extends _i1.PageRouteInfo<void> {
+  const SplashScreen() : super(name, path: '/splash');
 
-  static const String name = 'SplashScreenRoute';
+  static const String name = 'SplashScreen';
 }
 
-class SampleItemListViewRoute extends _i1.PageRouteInfo<void> {
-  const SampleItemListViewRoute() : super(name, path: '/sample-item-list-view');
+class SampleItemListRoute extends _i1.PageRouteInfo<void> {
+  const SampleItemListRoute() : super(name, path: '/');
 
-  static const String name = 'SampleItemListViewRoute';
+  static const String name = 'SampleItemListRoute';
 }
 
-class SampleItemDetailsViewRoute extends _i1.PageRouteInfo<void> {
-  const SampleItemDetailsViewRoute()
-      : super(name, path: '/sample-item-details-view');
+class SampleItemDetailsRoute extends _i1.PageRouteInfo<void> {
+  const SampleItemDetailsRoute() : super(name, path: '/sample_item');
 
-  static const String name = 'SampleItemDetailsViewRoute';
+  static const String name = 'SampleItemDetailsRoute';
 }
 
-class SettingsViewRoute extends _i1.PageRouteInfo<void> {
-  const SettingsViewRoute() : super(name, path: '/settings-view');
+class SettingsRoute extends _i1.PageRouteInfo<void> {
+  const SettingsRoute() : super(name, path: '/settings');
 
-  static const String name = 'SettingsViewRoute';
+  static const String name = 'SettingsRoute';
 }

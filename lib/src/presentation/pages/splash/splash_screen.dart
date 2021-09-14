@@ -31,6 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
   startSplashTimer() {
     var _duration = const Duration(milliseconds: 1000);
     return Timer(_duration,
-        () => AutoRouter.of(context).replace(const SampleItemListViewRoute()));
+        () => AutoRouter.of(context).replace(const SampleItemListRoute()));
   }
 }

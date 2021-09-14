@@ -4,12 +4,12 @@ import "package:shared_preferences/shared_preferences.dart";
 
 /// A repository that stores and retrieves user settings.
 
-@Singleton()
+@injectable
 class SettingsRepository {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
-  /// Loads the User's saved settings from local storage
+  /// Loads the saved locale from local storage, defaults to english
 
   Future<Locale> currentLocale() async {
     String savedLocale = (await prefs).getString("locale") ?? "en";
@@ -21,9 +21,9 @@ class SettingsRepository {
     /// Loads saved theme. Defaults to "system"
     String savedTheme = (await prefs).getString("theme") ?? "system";
 
-    if (savedTheme == "dark") {
+    if (savedTheme == "darkMode") {
       return ThemeMode.dark;
-    } else if (savedTheme == "light") {
+    } else if (savedTheme == "lightMode") {
       return ThemeMode.light;
     } else {
       return ThemeMode.system;
@@ -33,8 +33,8 @@ class SettingsRepository {
   /// Persists the user's preferred settings to local storage.
   Future<void> updateThemeMode(ThemeMode theme) async {
     if (theme == ThemeMode.system) (await prefs).setString("theme", "system");
-    if (theme == ThemeMode.light) (await prefs).setString("theme", "light");
-    if (theme == ThemeMode.dark) (await prefs).setString("theme", "dark");
+    if (theme == ThemeMode.light) (await prefs).setString("theme", "lightMode");
+    if (theme == ThemeMode.dark) (await prefs).setString("theme", "darkMode");
   }
 
   Future<void> updateLocale(Locale locale) async {

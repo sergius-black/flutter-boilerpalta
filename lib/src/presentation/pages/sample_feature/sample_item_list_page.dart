@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Displays a list of SampleItems.
-class SampleItemListView extends StatelessWidget {
-  const SampleItemListView({
+class SampleItemListPage extends StatelessWidget {
+  const SampleItemListPage({
     Key? key,
   }) : super(key: key);
-
-  static const routeName = '/';
 
   final List<SampleItem> items = const [
     SampleItem(1),
@@ -32,7 +30,7 @@ class SampleItemListView extends StatelessWidget {
               // Navigate to the settings page. If the user leaves and returns
               // to the app after it has been killed while running in the
               // background, the navigation stack is restored.
-              AutoRouter.of(context).push(const SettingsViewRoute());
+              AutoRouter.of(context).push(const SettingsRoute());
             },
           ),
         ],
@@ -63,7 +61,7 @@ class SampleItemListView extends StatelessWidget {
                 // Navigate to the details page. If the user leaves and returns to
                 // the app after it has been killed while running in the
                 // background, the navigation stack is restored.
-                AutoRouter.of(context).push(const SampleItemDetailsViewRoute());
+                AutoRouter.of(context).push(const SampleItemDetailsRoute());
                 // Navigator.restorablePushNamed(
                 //   context,
                 //   SampleItemDetailsView.routeName,

@@ -5,12 +5,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
-/// When a user changes a setting, the Theme cubit is updated and
-/// Widgets that listen to the Theme cubit are rebuilt.
-class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
-
-  static const routeName = '/settings';
+/// When a user changes a setting, the SettingsCubit is updated and
+/// Widgets that listen to SettingsCubit are rebuilt.
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +23,17 @@ class SettingsView extends StatelessWidget {
           if (state is SettingsLoaded) {
             return Padding(
               padding: const EdgeInsets.all(16),
-              // Glue the SettingsController to the theme selection DropdownButton.
+              // Glue the SettingsCubit to the theme and locale selection DropdownButtons.
               //
-              // When a user selects a theme from the dropdown list, the
-              // Theme cubit is updated, which rebuilds the MaterialApp.
+              // When a user selects a theme or locale from the dropdown lists, the
+              // SettingsCubit is updated, which rebuilds the MaterialApp.
               child: Column(
                 children: [
                   DropdownButton<Locale>(
-                    // Read the selected themeMode from the cubit state
+                    // Read the selected Locale from the cubit state
                     value: state.locale,
 
-                    // Call the updateThemeMode method any time the user selects a theme.
+                    // Call updateLocale method any time the user selects a locale.
                     onChanged: context.read<SettingsCubit>().updateLocale,
 
                     items: const [
@@ -75,7 +73,10 @@ class SettingsView extends StatelessWidget {
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            // If SettingsCubit is in any state other that SettingsLoaded, some error must have happened
+            return const Center(
+              child: Text("Some error happened"),
+            );
           }
         },
       ),

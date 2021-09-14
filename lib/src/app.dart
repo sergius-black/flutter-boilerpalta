@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _router = AppRouter();
-  final _settingsCubit = getIt<SettingsCubit>();
 
   @override
   void initState() {
@@ -27,22 +26,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // Glue the SettingsController to the MaterialApp.
-    //
-    // The AnimatedBuilder Widget listens to the SettingsController for changes.
-    // Whenever the user updates their settings, the MaterialApp is rebuilt.
+    //Awaits for all (non-lazy) injection modules to complete loading then builds the main app
     return FutureBuilder(
         future: getIt.allReady(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //Global scope bloc providers here
           return MultiBlocProvider(
             providers: [
-              BlocProvider.value(value: _settingsCubit)
-              // BlocProvider<ThemeCubit>(
-              //   create: (BuildContext context) => ThemeCubit(),
-              // )
+              BlocProvider(
+                create: (BuildContext context) => SettingsCubit(),
+              )
             ],
             child: BlocBuilder<SettingsCubit, SettingsState>(
-              bloc: _settingsCubit,
               builder: (context, state) {
                 if (state is SettingsLoaded) {
                   return MaterialApp.router(
@@ -58,10 +53,12 @@ class _MyAppState extends State<MyApp> {
                       GlobalWidgetsLocalizations.delegate,
                       GlobalCupertinoLocalizations.delegate,
                     ],
+
+                    // Read current saved locale from the SettingsCubit state
                     locale: state.locale,
                     supportedLocales: const [
                       Locale('en', ''), // English, no country code
-                      Locale('es', ''), // Español, sin codigo de pais
+                      Locale('es', ''), // Español, sin código de país
                     ],
 
                     // Use AppLocalizations to configure the correct application title
@@ -74,16 +71,15 @@ class _MyAppState extends State<MyApp> {
 
                     // Define a light and dark color theme. Then, read the user's
                     // preferred ThemeMode (light, dark, or system default) from the
-                    // SettingsController to display the correct theme.
+                    // SettingsCubit state to display the correct theme.
                     theme: ThemeData(),
                     darkTheme: ThemeData.dark(),
                     themeMode: state.themeMode,
-
-                    // Define a function to handle named routes in order to support
-                    // Flutter web url navigation and deep linking.
                   );
                 } else {
-                  _settingsCubit.loadSettings();
+                  // If SettingsCubit state is anything else than SettingsLoaded,
+                  // it calls the cubit's loadSettings method to load saved settings
+                  context.read<SettingsCubit>().loadSettings();
 
                   return const CircularProgressIndicator();
                 }

@@ -1,6 +1,6 @@
 # boilerpalta
 
-A new Flutter project.
+Flutter boilerplate project
 
 ## Getting Started
 

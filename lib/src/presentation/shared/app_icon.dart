@@ -6,7 +6,7 @@ class AppIconWidget extends StatelessWidget {
 
   const AppIconWidget({
     Key? key,
-    this.image = "assets/images/paltabigote.png",
+    this.image = "assets/images/paltarelax.png",
     required this.imageSize,
   }) : super(key: key);
 

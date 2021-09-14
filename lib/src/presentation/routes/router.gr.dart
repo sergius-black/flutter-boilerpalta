@@ -10,7 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../pages/sample_feature/sample_item_details_page.dart' as _i5;
 import '../pages/sample_feature/sample_item_list_page.dart' as _i4;
 import '../pages/settings/settings_page.dart' as _i6;
-import '../pages/splash/splash_screen.dart' as _i3;
+import '../pages/splash/splash.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -18,10 +18,10 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SplashScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    Splash.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i3.SplashScreen();
+          return const _i3.Splash();
         }),
     SampleItemListRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -42,21 +42,21 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(SplashScreen.name, path: '/splash'),
-        _i1.RouteConfig(SampleItemListRoute.name, path: '/'),
+        _i1.RouteConfig(Splash.name, path: '/'),
+        _i1.RouteConfig(SampleItemListRoute.name, path: '/list'),
         _i1.RouteConfig(SampleItemDetailsRoute.name, path: '/sample_item'),
         _i1.RouteConfig(SettingsRoute.name, path: '/settings')
       ];
 }
 
-class SplashScreen extends _i1.PageRouteInfo<void> {
-  const SplashScreen() : super(name, path: '/splash');
+class Splash extends _i1.PageRouteInfo<void> {
+  const Splash() : super(name, path: '/');
 
-  static const String name = 'SplashScreen';
+  static const String name = 'Splash';
 }
 
 class SampleItemListRoute extends _i1.PageRouteInfo<void> {
-  const SampleItemListRoute() : super(name, path: '/');
+  const SampleItemListRoute() : super(name, path: '/list');
 
   static const String name = 'SampleItemListRoute';
 }

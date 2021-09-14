@@ -27,9 +27,7 @@ class SampleItemListPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Navigate to the settings page. If the user leaves and returns
-              // to the app after it has been killed while running in the
-              // background, the navigation stack is restored.
+              // Navigate to the settings page
               AutoRouter.of(context).push(const SettingsRoute());
             },
           ),
@@ -54,18 +52,11 @@ class SampleItemListPage extends StatelessWidget {
           return ListTile(
               title: Text('SampleItem ${item.id}'),
               leading: const CircleAvatar(
-                // Display the Flutter Logo image asset.
-                foregroundImage: AssetImage('assets/images/paltarelax.png'),
+                foregroundImage: AssetImage('assets/images/paltabigote.png'),
               ),
               onTap: () {
-                // Navigate to the details page. If the user leaves and returns to
-                // the app after it has been killed while running in the
-                // background, the navigation stack is restored.
+                // Navigate to the details page
                 AutoRouter.of(context).push(const SampleItemDetailsRoute());
-                // Navigator.restorablePushNamed(
-                //   context,
-                //   SampleItemDetailsView.routeName,
-                // );
               });
         },
       ),

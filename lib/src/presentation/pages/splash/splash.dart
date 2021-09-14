@@ -5,14 +5,14 @@ import 'package:boilerpalta/src/presentation/routes/router.gr.dart';
 import 'package:boilerpalta/src/presentation/shared/app_icon.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SplashScreenState();
+  State<StatefulWidget> createState() => _SplashState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();

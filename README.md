@@ -4,13 +4,9 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is a starting boilerplate based on the official project skeleton from flutter 2.5. Its been upgraded to
+include more advanced state management using Flutter Bloc, dependency injection and Freezed union clases, as well as using 
+a clean architecture folder structure and auto_router for..... stuff.
 
 ## Assets
 

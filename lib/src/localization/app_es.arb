@@ -5,7 +5,7 @@
   },
   "listTitle": "Items de Ejemplo",
   "@listTitle": {
-    "description": "Titulo del Appbar en la pagina lista"
+    "description": "Titulo del Appbar en la pagina de lista"
   },
   "detailsTitle": "Detalles del Item",
   "@detailsTitle": {

@@ -2,23 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import "package:shared_preferences/shared_preferences.dart";
 
-/// A service that stores and retrieves user settings.
-///
-/// By default, this class does not persist user settings. If you'd like to
-/// persist the user settings locally, use the shared_preferences package. If
-/// you'd like to store settings on a web server, use the http package.
+/// A repository that stores and retrieves user settings.
 
 @Singleton()
 class SettingsRepository {
-  // late SharedPreferences _sharedPreferences;
-
-  // SettingsRepository() {
-  //   SharedPreferences.getInstance().then((prefs) => _sharedPreferences = prefs);
-  // }
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
-  /// Loads the User's preferred ThemeMode from local or remote storage.
+  /// Loads the User's saved settings from local storage
 
   Future<Locale> currentLocale() async {
     String savedLocale = (await prefs).getString("locale") ?? "en";
@@ -27,18 +18,19 @@ class SettingsRepository {
   }
 
   Future<ThemeMode> themeMode() async {
+    /// Loads saved theme. Defaults to "system"
     String savedTheme = (await prefs).getString("theme") ?? "system";
 
-    if (savedTheme == "system") {
-      return ThemeMode.system;
+    if (savedTheme == "dark") {
+      return ThemeMode.dark;
     } else if (savedTheme == "light") {
       return ThemeMode.light;
     } else {
-      return ThemeMode.dark;
+      return ThemeMode.system;
     }
   }
 
-  /// Persists the user's preferred ThemeMode of Locale to local storage.
+  /// Persists the user's preferred settings to local storage.
   Future<void> updateThemeMode(ThemeMode theme) async {
     if (theme == ThemeMode.system) (await prefs).setString("theme", "system");
     if (theme == ThemeMode.light) (await prefs).setString("theme", "light");

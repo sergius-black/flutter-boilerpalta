@@ -1,0 +1,18 @@
+{
+  "appTitle": "boilerpalta Español",
+  "@appTitle": {
+    "description": "El titulo de la app"
+  },
+  "listTitle": "Items de Ejemplo",
+  "@listTitle": {
+    "description": "Titulo del Appbar en la pagina lista"
+  },
+  "detailsTitle": "Detalles del Item",
+  "@detailsTitle": {
+    "description": "Titulo del Appbar en la pagina de detalles"
+  },
+  "settingsTitle": "Configuración",
+  "@settingsTitle": {
+    "description": "Titulo en la pagina de configuracion"
+  }
+}
